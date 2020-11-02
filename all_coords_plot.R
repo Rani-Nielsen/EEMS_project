@@ -43,6 +43,7 @@ my_theme <- theme(panel.grid.major = element_blank(), panel.grid.minor = element
                   axis.ticks=element_blank(),
                   legend.key = element_rect(fill = 'white'))
 
+map <- rworldmap::getMap(resolution = "high")
 
 # Plotting
 all_coords %>% ggplot(aes(x=y, y=x, color = Species)) +
@@ -55,6 +56,11 @@ all_coords %>% ggplot(aes(x=y, y=x, color = Species)) +
 
 # ggsave('project/plots/all_coords.png')
 
+# Example of initial EEMS plot
+leopard$mrates01 + 
+    geom_path(data = map, aes(x = long, y = lat, group = group),
+              color = "#888888", size = 0.5) + xlim(-12, 50) + ylim(-36, 17) +
+    coord_quickmap()
 
 
 
